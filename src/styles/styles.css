@@ -1,0 +1,95 @@
+:root {
+    --background_surface: whitesmoke;
+    --font_primary: black;
+}
+
+html {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+ul {
+    padding: 0;
+}
+
+h1 {
+    font-size: 2.3rem;
+}
+
+h2 {
+    font-size: 1.7rem;
+}
+
+input {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.button_edit {
+    position: absolute;
+    right: 10%;
+    top: 0;
+}
+
+#name {
+    max-width: 95%;
+}
+
+#cv_body {
+    width: 60vw;
+    height: 100vh;
+    display: grid;
+    padding: 0 30px;
+    grid-template-columns: 1fr 2fr;
+    border: solid 1px black;
+    background: var(--background_surface);
+
+}
+
+#basic-info-parent {
+    position: relative;
+    grid-column: 1;
+    border-right: solid 1px black;
+    padding-right: 30px;
+}
+
+#basic-info-details {
+    /* margin-top: 100px; */
+}
+
+#input_name {
+    position: absolute;
+    top: 0;
+    height: 50px;
+    width: 90%;
+    margin-top: 10px;
+    background: var(--background_surface);
+    border: none;
+    font-size: 1.3rem;
+    border-bottom: solid 2px #00000036;
+}
+
+#basic-info-edit {
+    /* margin-top: 100px; */
+    width: 100%;
+}
+
+/* ----------------------------------- Skills ------------------------------------ */
+#skills-list-edit {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-auto-flow: column;
+}
+
+#skills-list-edit li {
+    grid-column: 1;
+}
+
+#skills-list-edit button {
+    grid-column: 2;
+}
