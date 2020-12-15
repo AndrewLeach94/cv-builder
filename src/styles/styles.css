@@ -30,6 +30,10 @@ input {
     margin-bottom: 10px;
 }
 
+.section-container {
+    position: relative;
+}
+
 .button_edit {
     position: absolute;
     right: 10%;
@@ -80,6 +84,11 @@ input {
 }
 
 /* ----------------------------------- Skills ------------------------------------ */
+#skills-parent {
+    grid-column: 1;
+    border-right: solid 1px black;
+    padding-right: 30px;
+}
 #skills-list-edit {
     display: grid;
     grid-template-columns: 3fr 1fr;
@@ -93,3 +102,10 @@ input {
 #skills-list-edit button {
     grid-column: 2;
 }
+
+/* --------------------------------- Summary --------------------------------------- */
+#summary-parent {
+    grid-column: 2;
+    grid-row: 1;
+
+} 

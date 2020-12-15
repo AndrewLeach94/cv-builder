@@ -9,9 +9,6 @@ export class Skills extends Component {
             editMode: false,
             skills: ['HTML', 'CSS', 'Javascript', 'React', 'Visual Design'],
             newSkill: '',
-            
-            // These backups are here if the user makes edits but wants to cancel and revert back
-            nameBackUp: 'Your Name',
         };
 
     };
@@ -27,10 +24,11 @@ export class Skills extends Component {
 
 
         addSkill = (props) => {
-            let newSkillsArray = [...this.state.skills];
-            newSkillsArray.push(this.state.newSkill);
+            let newSkill = this.state.newSkill;
+            let newSkillsArray = [...this.state.skills, newSkill];
 
             this.setState({skills: newSkillsArray});
+            this.setState({newSkill: ''});
         }
 
         deleteSkill = (props) => {
@@ -54,6 +52,7 @@ export class Skills extends Component {
                     {/* This renders the bin icons to delete the skill it's paired with by index #*/}
                     {this.state.skills.map(element => {
                         return <button type="button" 
+                                key={"delete-" + element }
                                 className="button_delete" 
                                 data-index={this.state.skills.indexOf(element)}
                                 onClick={() => this.deleteSkill(this.state.skills.indexOf(element))}>
@@ -67,9 +66,9 @@ export class Skills extends Component {
                         placeholder="Add additional skills"
                         onChange={this.handleNewSkill}>
                         </input>
-                        <button type="button" id="button_new-skill" onChange={this.addSkill}><i className="fas fa-arrow-right"></i></button>
+                        <button type="button" id="button_new-skill" onClick={this.addSkill}><i className="fas fa-arrow-right"></i></button>
                     </div>
-                    <button type="button" className="button_primary" onClick={this.saveEdit}>Save</button>
+                    <button type="button" className="button_primary" onClick={this.toggleEditMode}>Save</button>
                 </form>
             )
         }
@@ -77,12 +76,12 @@ export class Skills extends Component {
     render() {
 
     return (
-        <div id="basic-info-parent">
-            <h2 id="name">Skills</h2>
+        <div id="skills-parent" className="section-container">
+            <h2 id="skills">Skills</h2>
             {/* If edit mode is on, the component will re-render in edit mode. Otherwise it renders the list from the skills array */}
             {this.state.editMode
             ? this.renderEditMode()
-            : <div className="section-container">
+            : <div id="skills-container">
                 <ul id="skills-list">
                     {this.state.skills.map(element => {
                         return <li key={element}>{element}</li>
