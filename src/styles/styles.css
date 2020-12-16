@@ -46,7 +46,7 @@ input {
 
 #cv_body {
     width: 60vw;
-    height: 100vh;
+    min-height: 100vh;
     display: grid;
     padding: 0 30px;
     grid-template-columns: 1fr 2fr;
@@ -107,5 +107,9 @@ input {
 #summary-parent {
     grid-column: 2;
     grid-row: 1;
-
 } 
+
+/* ---------------------------------- Education --------------------------------------- */
+#education-parent {
+    grid-column: 2;
+}

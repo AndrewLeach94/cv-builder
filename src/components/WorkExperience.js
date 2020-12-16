@@ -41,7 +41,66 @@ export class WorkExperience extends Component {
                 newCompany: event.target.value
             })
         }
+        
+        handleYearStart = (event) => {
+            this.setState({
+                yearStart: event.target.value
+            })
+        }
+        
+        handleYearEnd = (event) => {
+            this.setState({
+                yearEnd: event.target.value
+            })
+        }
+        
+        handleNewSummary = (event) => {
+            this.setState({
+                newSummary: event.target.value
+            })
+        }
+        
+        deleteJob = (props) => {
+            let newJobsArray = [...this.state.jobs]
+            newJobsArray.splice(props, 1);
 
+            this.setState({jobs: newJobsArray});
+        }
+        
+        //this function constructs a new job object before adding it to the jobs array state
+        addNewWorkExperience = () => {
+            let newJob;
+
+            const generateYearsWorked = () => {
+                //this function converts the yearEnd and yearStart to one string
+                let yearStart = this.state.yearStart;
+                let yearEnd = this.state.yearEnd;
+
+                let yearsWorked = `${yearStart}-${yearEnd}`;
+                return yearsWorked
+            }
+
+            newJob = {
+                jobTitle: this.state.newTitle,
+                company: this.state.newCompany,
+                yearsWorked: generateYearsWorked(),
+                summary: this.state.newSummary
+            }
+            
+            const newJobsArray = [...this.state.jobs, newJob];
+            this.setState({
+                jobs: newJobsArray,
+                newTitle: '',
+                newCompany: '',
+                yearStart: '',
+                yearEnd: '',
+                newSummary: '',
+            });
+
+        }
+        
+        
+        
         
         // this function handles the information edits
         renderEditMode = () => {
@@ -54,7 +113,7 @@ export class WorkExperience extends Component {
                                 <p key={element.company + "-company-edit"}className="job_company">{element.company}</p>
                                 <p key={element.company + "-years-edit"}className="job_years">{element.yearsWorked}</p>
                                 <p key={element.company + "-summary-edit"}className="job_summary">{element.summary}</p>
-                                <button type="button"> <i className="far fa-trash-alt"></i></button>
+                                <button type="button" onClick={() => this.deleteJob(this.state.jobs.indexOf(element))}> <i className="far fa-trash-alt"></i></button>
                             </div>
                         )
                     })}
@@ -64,17 +123,20 @@ export class WorkExperience extends Component {
                             <input value={this.state.newTitle} onChange={this.handleNewTitle}></input>
                         </label>
                         <label>Company:
-                            <input value={this.state.newCompany} onChange={this.handleNewTitle}></input>
+                            <input value={this.state.newCompany} onChange={this.handleNewCompany}></input>
                         </label>
-                        <label>Years:
-                            <input value={this.state.newCompany} type="date" placeHolder="Year Start:"onChange={this.handleNewTitle}></input>
-                            <input value={this.state.newCompany} type="date" placeHolder="Year End:"onChange={this.handleNewTitle}></input>
+                        <label>Start year:
+                            <input value={this.state.yearStart} onChange={this.handleYearStart} placeholder="eg. 2018"/>
+                        </label>
+                        <label>End year:
+                            <input value={this.state.yearEnd} onChange={this.handleYearEnd} placeholder="eg. 2020"/>
                         </label>
                         <label>Job Summary:
-                            <textarea id="textarea_job-summary"></textarea>
+                            <textarea id="textarea_job-summary" value={this.state.newSummary} onChange={this.handleNewSummary}></textarea>
                         </label>
-                        <button type="button" className="button_primary" onClick={this.saveEdit}>Save</button>
+                        <button type="button" className="button_primary" onClick={this.addNewWorkExperience}>Add Job</button>
                     </form>
+                        <button type="button" className="button_primary" onClick={this.toggleEditMode}>Save</button>
                 </div>
             )
         }
