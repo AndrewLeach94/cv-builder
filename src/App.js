@@ -7,9 +7,12 @@ import './styles/styles.css'
 
 const App = () => {
   return (
-    <div>
+    <div id="main-container">
         <header>
-          <h1>CV Application</h1>
+          <h1>CV Builder</h1>
+          <a href="https://github.com/AndrewLeach94/cv-builder">
+            <i className="fa fa-github"></i>
+          </a>
         </header>
         <div id="cv_body">
           <BasicInfo />

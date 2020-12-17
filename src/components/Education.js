@@ -100,11 +100,11 @@ export class Education extends Component {
                 <div id="education-list-edit">
                     {this.state.education.map(element => {
                         return (
-                            <div key={element.university + "-container-edit"}className="job-container">
+                            <div key={element.university + "-container-edit"}className="education-container">
                                 <h3 key={element.university + "-university-edit"}className="education_university">{element.university}</h3>
                                 <p key={element.university + "-years-studied-edit"}className="education_years">{element.yearsStudied}</p>
                                 <p key={element.university + "-degree-edit"}className="education_degree">{element.degree}</p>
-                                <button type="button" onClick={() => this.deleteEducation(this.state.education.indexOf(element))}> <i className="far fa-trash-alt"></i></button>
+                                <button type="button" className="button_delete-education" onClick={() => this.deleteEducation(this.state.education.indexOf(element))}> <i className="far fa-trash-alt"></i></button>
                             </div>
                         )
                     })}
@@ -122,9 +122,9 @@ export class Education extends Component {
                         <label>End year:
                             <input value={this.state.yearEnd} onChange={this.handleYearEnd} placeholder="eg. 2020"/>
                         </label>
-                        <button type="button" className="button_primary" onClick={this.addNewEducation}>Add Education</button>
+                        <button type="button" className="button_primary" id="button_add-education" onClick={this.addNewEducation}>Add Education <i className="fas fa-arrow-right"></i></button>
                     </form>
-                        <button type="button" className="button_primary" onClick={this.toggleEditMode}>Save</button>
+                        <button type="button" className="button_primary" onClick={this.toggleEditMode}>Done</button>
                 </div>
             )
         }

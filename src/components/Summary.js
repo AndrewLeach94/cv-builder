@@ -53,7 +53,7 @@ export class Summary extends Component {
         // this function handles the information edits
         renderEditMode = () => {
             return (
-                <form id="basic-info-edit">
+                <form id="summary-edit">
                     <label>Summary
                         <textarea id="textarea_summary" value={this.state.summary} onChange={this.handleChange} placeholder="Type your summary here"></textarea>
                     </label>
