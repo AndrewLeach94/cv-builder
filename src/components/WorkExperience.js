@@ -113,12 +113,12 @@ export class WorkExperience extends Component {
                                 <p key={element.company + "-company-edit"}className="job_company">{element.company}</p>
                                 <p key={element.company + "-years-edit"}className="job_years">{element.yearsWorked}</p>
                                 <p key={element.company + "-summary-edit"}className="job_summary">{element.summary}</p>
-                                <button type="button" onClick={() => this.deleteJob(this.state.jobs.indexOf(element))}> <i className="far fa-trash-alt"></i></button>
+                                <button type="button" className="button_delete-work" onClick={() => this.deleteJob(this.state.jobs.indexOf(element))}> <i className="far fa-trash-alt"></i></button>
                             </div>
                         )
                     })}
 
-                    <form id="basic-info-edit">
+                    <form id="work-experience-edit">
                         <label>Job Title:
                             <input value={this.state.newTitle} onChange={this.handleNewTitle}></input>
                         </label>
@@ -126,17 +126,17 @@ export class WorkExperience extends Component {
                             <input value={this.state.newCompany} onChange={this.handleNewCompany}></input>
                         </label>
                         <label>Start year:
-                            <input value={this.state.yearStart} onChange={this.handleYearStart} placeholder="eg. 2018"/>
+                            <input value={this.state.yearStart} onChange={this.handleYearStart} placeholder="eg 2018"/>
                         </label>
                         <label>End year:
-                            <input value={this.state.yearEnd} onChange={this.handleYearEnd} placeholder="eg. 2020"/>
+                            <input value={this.state.yearEnd} onChange={this.handleYearEnd} placeholder="eg 2020"/>
                         </label>
                         <label>Job Summary:
-                            <textarea id="textarea_job-summary" value={this.state.newSummary} onChange={this.handleNewSummary}></textarea>
+                            <textarea id="textarea_job-summary" value={this.state.newSummary} onChange={this.handleNewSummary} placeholder="A brief summary of your work experience"></textarea>
                         </label>
-                        <button type="button" className="button_primary" onClick={this.addNewWorkExperience}>Add Job</button>
+                        <button type="button" id="button_add-work" className="button_primary" onClick={this.addNewWorkExperience}>Add Job <i className="fas fa-arrow-right"></i></button>
                     </form>
-                        <button type="button" className="button_primary" onClick={this.toggleEditMode}>Save</button>
+                        <button type="button" className="button_primary" onClick={this.toggleEditMode}>Done</button>
                 </div>
             )
         }
@@ -145,7 +145,7 @@ export class WorkExperience extends Component {
 
     return (
         <div id="work-experience-parent" className="section-container">
-            <h2 id="work-experience">{this.state.savedName}</h2>
+            <h2 id="work-experience">Work Experience</h2>
             {/* If edit mode is on, the component will re-render in edit mode. Otherwise it renders in display mode */}
             {this.state.editMode
             ? this.renderEditMode()

@@ -68,7 +68,7 @@ export class Skills extends Component {
                         </input>
                         <button type="button" id="button_new-skill" onClick={this.addSkill}><i className="fas fa-arrow-right"></i></button>
                     </div>
-                    <button type="button" className="button_primary" onClick={this.toggleEditMode}>Save</button>
+                    <button type="button" className="button_primary-lighter" onClick={this.toggleEditMode}>Save</button>
                 </form>
             )
         }
