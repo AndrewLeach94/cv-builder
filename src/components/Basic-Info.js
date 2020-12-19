@@ -93,8 +93,8 @@ export class BasicInfo extends Component {
                     <label>GitHub:
                         <input name="gitHub" value={this.state.gitHub} placeholder="GitHub URL" onChange={this.handleGitHubChange}/>
                     </label>
-                    <button type="button" className="button_primary-lighter" onClick={this.saveEdit}>Save</button>
-                    <button type="button" className="button_secondary-lighter" onClick={this.cancelEdit}>Cancel</button>
+                    <button type="button" className="button_primary" onClick={this.saveEdit}>Save</button>
+                    <button type="button" className="button_secondary" onClick={this.cancelEdit}>Cancel</button>
                 </form>
             )
         }
