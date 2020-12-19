@@ -141,38 +141,6 @@ a {
 .button_secondary:hover {
     border-bottom: solid 2px grey;
 }
-.button_primary-lighter {
-    margin: 20px 20px 20px 0px;
-    padding: 3px 5px;
-    border: none;
-    background: none;
-    font-weight: 600;
-    cursor: pointer;
-    border: solid 2px var(--background_surface-lighter);
-    height: 30px;
-}
-
-.button_primary-lighter:hover {
-    border-bottom: solid 2px grey;
-
-}
-
-.button_secondary-lighter {
-    margin: 20px 20px 20px 0px;
-    padding: 3px 5px;
-    border: none;
-    background: none;
-    font-weight: 400;
-    cursor: pointer;
-    border: solid 2px var(--background_surface-lighter);
-    height: 30px;
-
-}
-
-.button_secondary-lighter:hover {
-    border-bottom: solid 2px grey;
-}
-
 
 .button_delete {
     background: none;
@@ -206,7 +174,6 @@ a {
     grid-column: 1;
     border-right: solid 1px black;
     padding-right: 30px;
-    background: var(--background_surface-lighter);
 }
 
 
@@ -233,7 +200,6 @@ a {
     border-right: solid 1px black;
     padding-right: 30px;
     grid-row: 2 / 4;
-    background: var(--background_surface-lighter);
 }
 
 #skills-parent li {
