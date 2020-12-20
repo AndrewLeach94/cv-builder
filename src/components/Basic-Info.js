@@ -1,125 +1,105 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
 // This is the primary source component 
-export class BasicInfo extends Component {
-    constructor(props) {
-        super(props);
+export const BasicInfo = () => {
 
-        this.state = {
-            editMode: false,
+    const [editMode, setEditMode] = useState(false);
+    const [name, setName] = useState('Your Name');
+    const [phoneNumber, setPhoneNumber] = useState('123-456-7890');
+    const [emailAddress, setEmailAddress] = useState('example@example.com');
+    const [gitHub, setGitHub] = useState('GitHub URL');
+    const [savedName, setSavedName] = useState('Your Name');
+    const [nameBackup, setNameBackup] = useState('Your Name');
+    const [phoneNumberBackup, setPhoneNumberBackup] = useState('123-456-7890');
+    const [emailBackup, setEmailBackup] = useState('example@example.com');
+    const [gitHubBackup, setGitHubBackup] = useState('GitHub URL');
 
-            name: 'Your Name',
-            phoneNumber: '123-456-7890',
-            emailAddress: 'example@example.com',
-            gitHub: 'GitHub URL',
 
-          /* this state exists as the reference point for the name is updated on save. It prevents updating in real time as the user types since
-             it screws with the syling if the name is long */ 
-            savedName: 'Your Name',
-            
-            // These backups are here if the user makes edits but wants to cancel and revert back
-            nameBackUp: 'Your Name',
-            phoneNumberBackUp: '123-456-7890',
-            emailAddressBackUp: 'example@example.com',
-            gitHubBackUp: 'GitHub URL',
-        };
-
-    };
-
-     toggleEditMode = (event) => {
+     function toggleEditMode(event) {
          // this function toggles edit mode on and off
-        this.setState({editMode: !this.state.editMode})
+        setEditMode(!editMode)
         }
 
-        handleNameChange = (event) => {
-            this.setState({
-                name: event.target.value
-            })
-        }
-
-        handlePhoneChange = (event) => {
-            this.setState({
-                phoneNumber: event.target.value
-            })
+        function handleNameChange(event) {
+           setName(event.target.value)
         }
         
-        handleEmailChange = (event) => {
-            this.setState({
-                emailAddress: event.target.value
-            })
+        function handlePhoneChange(event) {
+            setPhoneNumber(event.target.value)
         }
         
-        handleGitHubChange = (event) => {
-            this.setState({
-                gitHub: event.target.value
-            })
+        function handleEmailChange(event) {
+            setEmailAddress(event.target.value)
+        }
+        
+        function handleGitHubChange(event) {
+            setGitHub(event.target.value)
+
         }
 
-        saveEdit = () => {
+        function saveEdit() {
             //this function saves the new backups before exiting edit mode
-            this.setState({nameBackup: this.state.name});
-            this.setState({phoneNumberBackup: this.state.phoneNumber});
-            this.setState({emailAddressBackup: this.state.emailAddress});
-            this.setState({gitHubBackup: this.state.gitHub});
+            setNameBackup(name);
+            setPhoneNumberBackup(phoneNumber);
+            setEmailBackup(emailAddress);
+            setGitHubBackup(gitHub);
 
             //it also updates the savedName state so the name changes only after the user hits save
-            this.setState({savedName: this.state.name});
+            setSavedName(name);
 
-            this.toggleEditMode();
+            toggleEditMode();
         }
 
-        cancelEdit = () => {
+        function cancelEdit() {
             // this function reverts the values back to their backups before canceling edit mode
-            this.setState({name: this.state.nameBackUp});
-            this.setState({phoneNumber: this.state.phoneNumberBackUp});
-            this.setState({emailAddress: this.state.emailAddressBackUp});
-            this.setState({gitHub: this.state.gitHubBackUp});
+            setName(nameBackup);
+            setPhoneNumber(phoneNumberBackup);
+            setEmailAddress(emailBackup);
+            setGitHub(gitHubBackup);
 
-            this.toggleEditMode();
+            toggleEditMode();
         }
 
         
         // this function handles the information edits
-        renderEditMode = () => {
+        function renderEditMode() {
             return (
                 <form id="basic-info-edit">
-                    <input name="name" id="input_name" type="text" value={this.state.name} placeholder="Type your name..." onChange={this.handleNameChange}/>
+                    <input name="name" id="input_name" type="text" value={name} placeholder="Type your name..." onChange={handleNameChange}/>
                     <label> Phone:
-                        <input name="phone" type="tel" value={this.state.phoneNumber} placeholder="eg. 123-456-7890" onChange={this.handlePhoneChange}/>
+                        <input name="phone" type="tel" value={phoneNumber} placeholder="eg. 123-456-7890" onChange={handlePhoneChange}/>
                     </label>
                     <label> Email:
-                        <input name="emailAddress" type="email" value={this.state.emailAddress} placeholder="example@example.com" onChange={this.handleEmailChange}/>
+                        <input name="emailAddress" type="email" value={emailAddress} placeholder="example@example.com" onChange={handleEmailChange}/>
                     </label>
                     <label>GitHub:
-                        <input name="gitHub" value={this.state.gitHub} placeholder="GitHub URL" onChange={this.handleGitHubChange}/>
+                        <input name="gitHub" value={gitHub} placeholder="GitHub URL" onChange={handleGitHubChange}/>
                     </label>
-                    <button type="button" className="button_primary" onClick={this.saveEdit}>Save</button>
-                    <button type="button" className="button_secondary" onClick={this.cancelEdit}>Cancel</button>
+                    <button type="button" className="button_primary" onClick={saveEdit}>Save</button>
+                    <button type="button" className="button_secondary" onClick={cancelEdit}>Cancel</button>
                 </form>
             )
         }
 
-    render() {
-
     return (
         <div id="basic-info-parent" className="section-container">
-            <h2 id="name">{this.state.savedName}</h2>
+            <h2 id="name">{savedName}</h2>
             {/* If edit mode is on, the component will re-render in edit mode. Otherwise it renders in display mode */}
-            {this.state.editMode
-            ? this.renderEditMode()
+            {editMode
+            ? renderEditMode()
             : <div id="basic-info-details"> 
               {/* this is normal mode */}
-              <button type="button" className="button_edit" onClick={this.toggleEditMode}><i className="far fa-edit"></i></button>
+              <button type="button" className="button_edit" onClick={toggleEditMode}><i className="far fa-edit"></i></button>
               <ul id="list_basic-info">
-                  <li>{this.state.phoneNumber}</li>
-                  <li>{this.state.emailAddress}</li>
-                  <li>{this.state.gitHub}</li>
+                  <li>{phoneNumber}</li>
+                  <li>{emailAddress}</li>
+                  <li>{gitHub}</li>
               </ul>
             </div>
             }
         </div>
     )
-}
+
 };
 
 
